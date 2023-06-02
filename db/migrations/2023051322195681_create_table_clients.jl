@@ -6,8 +6,8 @@ function up()
   create_table(:clients) do
     [
       pk()
-      column(:name, :string, limit = 50)
-      column(:email, :string, limit = 50)
+      column(:name, :string, limit = 100)
+      column(:email, :string, limit = 100)
     ]
   end
 

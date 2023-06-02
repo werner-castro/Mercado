@@ -8,6 +8,7 @@ function up()
       pk()
       column(:client_id, :integer)
       column(:order_date, :date)
+      column(:totals, :float)
     ]
   end
 

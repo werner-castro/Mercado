@@ -1,4 +1,4 @@
-module CreateTableOrderProducts
+module CreateTableItemsOrders
 
 import SearchLight.Migrations: create_table, column, columns, pk, add_index, drop_table, add_indices
 

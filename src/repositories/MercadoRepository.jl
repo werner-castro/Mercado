@@ -1,11 +1,10 @@
 module MercadoRepository
 
-import SearchLight: AbstractModel, all, find, findone, save, updateby_or_create, update_or_create, delete
-import SearchLight.QueryBuilder: from, select, where, limit, offset, order, group, having, prepare
+using SearchLight
+using SearchLight.QueryBuilder
 
 export all, find, findone, save, updateby_or_create, update_or_create, delete, alter_by_id, select_by_id, select_by_name
 export from, select, where, limit, offset, order, group, having, prepare
-
 
 ###########################
 # from(model::AbstractModel)

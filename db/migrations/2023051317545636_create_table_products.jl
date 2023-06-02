@@ -6,7 +6,7 @@ function up()
   create_table(:products) do
     [
       pk()
-      column(:name, :string, limit = 50)
+      column(:description, :string, limit = 50)
       column(:price, :float)
     ]
   end
