@@ -7,9 +7,9 @@ import Base: @kwdef
 export Product, modelverify
 
 @kwdef mutable struct Product <: AbstractModel
-    id::DbId       = DbId()
-    name::String   = ""
-    price::Float64 = 0.0
+    id::DbId            = DbId()
+    description::String = ""
+    price::Float64      = 0.0
 end
 
 Validation.validator(::Type{Product}) = ModelValidator([
