@@ -1,0 +1,21 @@
+name = "Mercado"
+uuid = "e73bf410-cef5-41f4-b654-b1aa64ecf54a"
+authors = ["werner <carlos.werner@pathfind.com.br>"]
+version = "0.1.0"
+
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+Inflector = "6d011eab-0732-4556-8808-e463c76bf3b6"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+LibPQ = "194296ae-ab2e-5f79-8cd4-7183a0a5a0d1"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+SearchLight = "340e8cb6-72eb-11e8-37ce-c97ebeb32050"
+SearchLightPostgreSQL = "4327cdd6-4902-11ea-0272-430cea0431bd"
+ToStruct = "43ec2cc1-0e50-5406-a854-b7ff8fdb8dad"
+Wasabi = "cec542a4-22c5-46cb-8ca4-a46a7737b387"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
