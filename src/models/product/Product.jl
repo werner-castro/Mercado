@@ -13,8 +13,8 @@ export Product, modelverify
 end
 
 Validation.validator(::Type{Product}) = ModelValidator([
-    ValidationRule(:name, not_empty)
-    ValidationRule(:name, max_size_name)
+    ValidationRule(:description, not_empty)
+    ValidationRule(:description, max_size_name)
     ValidationRule(:price, not_empty)
     ValidationRule(:price, not_zero)
 ])
