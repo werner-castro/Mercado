@@ -11,7 +11,7 @@ function up()
     ]
   end
 
-  add_index(:products, :name)
+  add_index(:products, :description)
 end
 
 function down()

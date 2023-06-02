@@ -10,7 +10,7 @@ include("models/validations/Validations.jl")
 include("models/client/Client.jl")
 include("models/order/Order.jl")
 include("models/product/Product.jl")
-include("models/order product/OrderProduct.jl")
+include("models/item order/ItemOrder.jl")
 include("models/user/User.jl")
 
 
@@ -18,7 +18,7 @@ include("models/user/User.jl")
 include("repositories/MercadoRepository.jl")
 include("repositories/ProductRepository.jl")
 include("repositories/OrderRepository.jl")
-include("repositories/OrderProductRepository.jl")
+include("repositories/ItemOrderRepository.jl")
 include("repositories/ClientRepository.jl")
 include("repositories/UserRepository.jl")
 
@@ -26,7 +26,7 @@ include("repositories/UserRepository.jl")
 ########################################## service layer
 include("services/ProductService.jl")
 include("services/OrderService.jl")
-include("services/OrderProductService.jl")
+include("services/ItemOrderService.jl")
 include("services/ClientService.jl")
 
 

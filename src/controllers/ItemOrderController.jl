@@ -1,16 +1,16 @@
-module OrderProductController
+module ItemOrderController
 
 using Genie.Router, Genie.Requests, Genie.Renderer.Json, Genie.Responses
 import Mercado.HandlingExceptions: handling_error
-using Mercado.OrderProductService
-using Mercado.OrderProductModel
+using Mercado.ItemOrderService
+using Mercado.ItemOrderModel
 import ToStruct: tostruct
 
-URL = "/api/orders_products/"
+URL = "/api/item_orders/"
 
 route(URL * "list", method = GET) do 
     try
-        json(list_all_orders_products())
+        json(list_all_item_orders())
     catch error
         response = handling_error(error)
         return response
@@ -19,8 +19,8 @@ end
 
 route(URL * "save", method = POST) do
     try
-        orderProduct = tostruct(OrderProduct, jsonpayload())
-        save_order_product(orderProduct)
+        itemOrder = tostruct(ItemOrder, jsonpayload())
+        save_item_order(itemOrder)
     catch error
         response = handling_error(error)
         return response
@@ -29,8 +29,8 @@ end
 
 route(URL * "update", method = PUT) do 
     try
-        orderProduct = tostruct(OrderProduct, jsonpayload())
-        json(update_order_product_by_id(orderProduct))
+        itemOrder = tostruct(ItemOrder, jsonpayload())
+        json(update_item_order_by_id(itemOrder))
     catch error
         response = handling_error(error)
         return response
@@ -39,10 +39,10 @@ end
 
 route(URL * "delete", method = DELETE) do 
     try
-        orderProduct = OrderProduct()
-        orderProduct.id = id
+        itemOrder = ItemOrder()
+        itemOrder.id = id
         id = parse(Int64, payload(:id))
-        remove_order_product_by_id(orderProduct)
+        remove_item_order_by_id(itemOrder)
     catch error
         response = handling_error(error)
         return response

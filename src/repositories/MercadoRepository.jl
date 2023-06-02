@@ -18,7 +18,7 @@ function select_by_id(model::AbstractModel)
 end
 
 function select_by_name(model::AbstractModel)
-    name  = model.name
+    name = model.name
     find(typeof(model), name = model.name)
 end
 

@@ -5,9 +5,9 @@ import Mercado.ProductModel: Product
 import HTTP.StatusCodes as status
 using Mercado.ProductRepository
 
-export list_products, save_product, update_product_by_id, remove_product_by_id, get_product_by_id
+export all_product, save_product, update_product_by_id, delete_product, get_product_by_id
 
-function list_products()
+function all_product()
     products = all(Product)
     !isnothing(products) || throw(NotFoundException("table PRODUCTS is empty", "", status.NO_CONTENT, ""))
     
@@ -30,7 +30,7 @@ function update_product_by_id(product::Product)
     return result
 end 
 
-function remove_product_by_id(id::Int64)
+function delete_product(id::Int64)
     product = Product(id=id)
     result = select_by_id(product)
     !isnothing(result) || throw(NotFoundException("Id of product: $(product.id) not found", "", status.NOT_FOUND, ""))

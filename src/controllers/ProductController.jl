@@ -10,7 +10,7 @@ URL = "/api/products/"
 
 route(URL * "list", method = GET) do
     try
-        json(list_products())
+        json(all_product())
     catch error
         response = handling_error(error)
         return response
@@ -51,7 +51,7 @@ end
 route(URL * "delete/:id", method = DELETE) do
     try
         id = tryparse(Int64, payload(:id))
-        remove_product_by_id(id)
+        delete_product(id)
     catch error 
         response = handling_error(error)
         return response
