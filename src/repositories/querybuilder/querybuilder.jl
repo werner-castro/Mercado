@@ -3,13 +3,23 @@ module MercadoQueryBuilder
 import SearchLight: AbstractModel, find, SQLWhereExpression
 import Mercado.ProductModel: Product
 
-export from, where, and, or, not, beetween, query
+export FROM, SELECT, WHERE, AND, OR, NOT, BETWEEN, IF, THEN, ELSE, END, QUERY, FOR, IN, LIKE, IS, NULL
 
-function from(model::AbstractModel)
+"""
+```
+    FROM(Product)
+```
+"""
+function FROM(model::DataType)
     "FROM $(lowercase(String(nameof(model))))" * "s" * "\n"
 end
 
-function select(kwargs::Symbol...)
+"""
+```
+    SELECT(:id, :name, :price)
+```
+"""
+function SELECT(kwargs::Symbol...)
     string = "SELECT "
     for k = 1:lastindex(kwargs)
         string *= lowercase("$(kwargs[k])") * ", "
@@ -20,27 +30,117 @@ function select(kwargs::Symbol...)
     return string
 end
 
-where(Expr) = return "WHERE " * "$(Expr) \n"
+"""
+```
+WHERE(:(id = 1))
+```
+"""
+WHERE(Expr) = return "WHERE " * "$(Expr) \n"
  
-and(Expr) = return " AND " * "$(Expr) \n"
+'''
+```
+AND(:(description = "Produto A"))
+```
+'''
+AND(Expr) = return "AND " * "$(Expr) \n"
 
-or(Expr) = return " OR " * "$(Expr) \n"
+'''
+```
+OR(:(description = "Produto B"))
+```
+'''
+OR(Expr) = return "OR " * "$(Expr) \n"
 
-not() = return " NOT "
+'''
+```
+NOT(:(description = "Produto B"))
+```
+'''
+NOT() = return "NOT "
 
-beetween(Expr) = return " BETWEEN " * "$(Expr) \n"
+'''
+```
+BETWEEN(:(description = "Produto B"))
+```
+'''
+BETWEEN(Expr) = return "BETWEEN " * "$(Expr) \n"
+
+'''
+```
+IF(:(description = "Produto B"))
+```
+'''
+IF(Expr) = return "IF " * "$(Expr) \n"
+
+'''
+```
+THEN(:(description = "Produto B"))
+```
+'''
+THEN(Expr) = return "THEN " * "$(Expr) \n"
+
+'''
+```
+ELSE(:(description = "Produto B"))
+```
+'''
+ELSE(Expr) = return "ELSE " * "$(Expr) \n"
+
+'''
+```
+END(:(description = "Produto B"))
+```
+'''
+END(Expr) = return "END " * "$(Expr) \n"
+
+'''
+```
+FOR(:(description = "Produto B"))
+```
+'''
+FOR(Expr) = return "FOR " * "$(Expr) \n"
+
+'''
+``` 
+IN(:(description = "Produto B"))
+```
+'''
+IN(Expr) = return "IN " * "$(Expr) \n"
+
+'''
+```
+LIKE(:(description = "Produto B"))
+```
+'''
+LIKE(Expr) = return "LIKE " * "$(Expr) \n"
+
+'''
+``` 
+IS(:(description = "Produto B"))
+```
+'''
+IS(Expr) = return "IS " * "$(Expr) \n"
+
+'''
+```
+NULL(:(description = "Produto B"))
+```
+'''
+NULL(Expr) = return "NULL " * "$(Expr) \n"
 
 """
-query(
-    Product,
-    from(Product),
-    select(:id, :price),
-    where(:(id >= 100)),
-    and(:(price>= 200)),
-    or(:(price = 300))
-)
+```
+    QUERY(
+        Product,
+        FROM(Product),
+        SELECT(:id, :name, :price),
+        WHERE(:(id = 1)),
+        AND(:(description = "Produto A")),
+        OR(:(description = "Produto B"))
+    )
+```
 """
-function query(model::DataType, kwargs...)
+function QUERY(model::DataType, kwargs...)
     qry = ""
     for k = 1:lastindex(kwargs)
         qry *= kwargs[k]
@@ -52,4 +152,3 @@ function query(model::DataType, kwargs...)
 end
 
 end # module
-
