@@ -130,14 +130,14 @@ NULL(Expr) = return "NULL " * "$(Expr) \n"
 
 """
 ```
-    QUERY(
-        Product,
-        FROM(Product),
-        SELECT(:id, :name, :price),
-        WHERE(:(id = 1)),
-        AND(:(description = "Produto A")),
-        OR(:(description = "Produto B"))
-    )
+QUERY(
+    Product,
+    FROM(Product),
+    SELECT(:id, :name, :price),
+    WHERE(:(id = 1)),
+    AND(:(description = ProdutoA)),
+    OR(:(description = ProdutoB))
+)
 ```
 """
 function QUERY(model::DataType, kwargs...)
@@ -147,8 +147,7 @@ function QUERY(model::DataType, kwargs...)
     end
     qry *= ";"
     
-    return qry
-    # return find(typeof(model), SQLWhereExpression(qr))
+    return find(typeof(model), SQLWhereExpression(qr))
 end
 
 end # module
