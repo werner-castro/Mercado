@@ -1,14 +1,12 @@
 module MercadoRepository
 
+import Searchligh.QueryBuilder: SQLWhereExpression
 using SearchLight
-using SearchLight.QueryBuilder
+using FunSQL # é o pacote para construir as queries
 
 export all, find, findone, save, updateby_or_create, update_or_create, delete, alter_by_id, select_by_id, select_by_name
-export from, select, where, limit, offset, order, group, having, prepare
-
-###########################
-# from(model::AbstractModel)
-# select(:column_1, :column_2)
+export As, From, Fun, Get, Join, Select, Where
+export SQLWhereExpression
 
 alter_by_id(model::AbstractModel) = update_or_create(model, ignore = [:id])
 

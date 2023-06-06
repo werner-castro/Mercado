@@ -16,8 +16,7 @@ end
 
 function save_product(product::Product)
     result = save(product)
-    result || throw(NotPersistedException(Product, "product not persisted")) 
-
+    isequal(result, true) || throw(NotPersistedException(Product, "product not persisted")) 
     return result
 end
 
