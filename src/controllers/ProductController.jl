@@ -1,8 +1,8 @@
 module ProductController
 
 using Genie.Router, Genie.Requests, Genie.Renderer.Json
-using Mercado.HandlingExceptions
-using Mercado.ProductService
+import Mercado.HandlingExceptions: handling_error
+import Mercado.ProductService as service
 using Mercado.ProductModel
 import ToStruct: tostruct
 
@@ -10,7 +10,7 @@ URL = "/api/products/"
 
 route(URL * "list", method = GET) do
     try
-        json(all_product())
+        json(service.all_product())
     catch error
         response = handling_error(error)
         return response
@@ -20,7 +20,7 @@ end
 route(URL * "select/id", method = GET) do 
     try 
         id = tryparse(Int64, params(:id))
-        product = get_product_by_id(id)
+        product = service.get_product_by_id(id)
         json(product)
     catch error
         response = handling_error(error)
@@ -31,7 +31,7 @@ end
 route(URL * "save", method = POST) do 
     try
         product = tostruct(Product, jsonpayload()) |> modelverify
-        save_product(product)
+        service.save_product(product)
     catch error 
         response = handling_error(error)
         return response
@@ -41,7 +41,7 @@ end
 route(URL * "update", method = PUT) do
     try
         product = tostruct(Product, jsonpayload()) |> modelverify
-        json(update_product_by_id(product))
+        json(service.update_product_by_id(product))
     catch error
         response = handling_error(error)
         return response
@@ -51,7 +51,7 @@ end
 route(URL * "delete/:id", method = DELETE) do
     try
         id = tryparse(Int64, payload(:id))
-        delete_product(id)
+        service.delete_product(id)
     catch error 
         response = handling_error(error)
         return response

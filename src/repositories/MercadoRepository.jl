@@ -1,6 +1,5 @@
 module MercadoRepository
 
-import Searchligh.QueryBuilder: SQLWhereExpression
 using SearchLight
 using FunSQL # é o pacote para construir as queries
 
