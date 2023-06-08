@@ -3,17 +3,7 @@ module OrderRepository
 import Mercado.OrderModel: Order
 using Mercado.MercadoRepository
 
-export all, find, findone, save, delete, alter_by_id, select_by_id, select_by_date, select_by_totals, select_order_by_date_and_total
-
-function select_by_date(order::Order)
-    date = order.order_date
-    find(Order, date = order.order_date)
-end
-
-function select_by_totals(order::Order)
-    totals = order.totals
-    find(Order, totals = order.totals)
-end
+export select_order_by_date_and_total
 
 # função para selecionar pedido por data e total
 function select_order_by_date_and_total(date::String, totals::Float64)
