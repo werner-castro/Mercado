@@ -1,7 +1,7 @@
 module MercadoRepository
 
 using SearchLight
-using FunSQL # é o pacote para construir as queries
+using FunSQL
 
 export all, find, findone, save, updateby_or_create, update_or_create, delete, alter_by_id, select_by_id, select_by_name
 export SQLWhereExpression, select_by_date, select_by_totals

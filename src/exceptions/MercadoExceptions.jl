@@ -1,7 +1,3 @@
-# structs para exceções customizadas
-
-module MercadoExceptions
-
-
+module MercadoExceptions # structs para exceções customizadas
 
 end # module

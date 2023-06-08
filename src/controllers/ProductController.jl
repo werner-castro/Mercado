@@ -1,10 +1,11 @@
 module ProductController
 
-using Genie.Router, Genie.Requests, Genie.Renderer.Json
 import Mercado.HandlingExceptions: handling_error
+using Genie.Requests, Genie.Renderer.Json
 import Mercado.ProductService as service
 using Mercado.ProductModel
 import ToStruct: tostruct
+using Genie.Router
 
 URL = "/api/products/"
 
@@ -32,7 +33,8 @@ route(URL * "save", method = POST) do
     try
         product = tostruct(Product, jsonpayload()) |> modelverify
         service.save_product(product)
-    catch error 
+    catch error
+
         response = handling_error(error)
         return response
     end

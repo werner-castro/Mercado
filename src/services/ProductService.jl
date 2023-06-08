@@ -17,6 +17,7 @@ end
 function save_product(product::Product)
     result = repository.save(product)
     isequal(result, true) || throw(NotPersistedException(Product, "product not persisted")) 
+    
     return result
 end
 
