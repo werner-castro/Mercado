@@ -34,7 +34,6 @@ include("services/OrderService.jl")
 include("services/ItemOrderService.jl")
 include("services/ClientService.jl")
 
-
 using Genie
 
 const up = Genie.up

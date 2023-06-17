@@ -1,6 +1,7 @@
 module OrderDTO
 
 using SearchLight: DbId
+using Dates
 
 export OrderDto
 
