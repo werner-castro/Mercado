@@ -4,6 +4,12 @@ module Mercado
 include("exceptions/MercadoExceptions.jl")
 include("exceptions/HandlingExceptions.jl")
 
+########################################## dtos layer
+include("controllers/dtos/OrderDTO.jl")
+include("controllers/dtos/ClientDTO.jl")
+include("controllers/dtos/ItemOrderDTO.jl")
+include("controllers/dtos/ProductDTO.jl")
+include("controllers/dtos/UserDTO.jl")
 
 ########################################## model layer
 include("models/validations/Validations.jl")
@@ -12,7 +18,6 @@ include("models/order/Order.jl")
 include("models/product/Product.jl")
 include("models/item order/ItemOrder.jl")
 include("models/user/User.jl")
-
 
 ########################################## repository layer
 include("repositories/MercadoRepository.jl")
