@@ -33,6 +33,7 @@ include("services/ProductService.jl")
 include("services/OrderService.jl")
 include("services/ItemOrderService.jl")
 include("services/ClientService.jl")
+include("services/UserService.jl")
 
 using Genie
 
