@@ -1,7 +1,7 @@
 module UserRepository
 
 using Mercado.MercadoRepository
-using Mercado.User: User
+using Mercado.UserModel: User
 
 export select_by_email
 
