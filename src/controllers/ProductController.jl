@@ -13,8 +13,10 @@ URL = "/api/products/"
 route(URL * "list", method = GET) do
     try
         json(service.all_product())
+        setstatus(OK)
     catch error
         response = handling_error(error)
+        setstatus(response.status)
         return response
     end
 end
@@ -23,9 +25,11 @@ route(URL * "select/id", method = GET) do
     try 
         id = tryparse(Int64, params(:id))
         product = service.get_product_by_id(id)
+        setstatus(OK)
         json(product)
     catch error
         response = handling_error(error)
+        setstatus(response.status)
         return response
     end
 end
@@ -37,6 +41,7 @@ route(URL * "save", method = POST) do
         setstatus(CREATED)
     catch error
         response = handling_error(error)
+        setstatus(response.status)
         return response
     end
 end
@@ -48,6 +53,7 @@ route(URL * "update", method = PUT) do
         setstatus(NO_CONTENT)
     catch error
         response = handling_error(error)
+        setstatus(response.status)
         return response
     end
 end
@@ -59,6 +65,7 @@ route(URL * "delete/:id", method = DELETE) do
         setstatus(NO_CONTENT)
     catch error 
         response = handling_error(error)
+        setstatus(response.status)
         return response
     end
 end
