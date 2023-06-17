@@ -1,1 +1,1 @@
-# Projeto para api rest com framework Genie
+# Projeto para api restful com framework Genie
