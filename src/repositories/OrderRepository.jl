@@ -1,7 +1,9 @@
 module OrderRepository
 
+import Mercado.ClientModel: Client
 import Mercado.OrderModel: Order
 using Mercado.MercadoRepository
+using JSON
 
 export select_order_by_date_and_total
 

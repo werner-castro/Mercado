@@ -16,7 +16,10 @@ export ItemOrder, modelverify
 end
 
 Validation.validator(::Type{ItemOrder}) = ModelValidator([
-
+    ValidationRule(:order, not_empty)
+    ValidationRule(:product, not_empty)
+    ValidationRule(:quantity, not_empty)
+    ValidationRule(:quantity, is_int)
 ])
 
 end # module
