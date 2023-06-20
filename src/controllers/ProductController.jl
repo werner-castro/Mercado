@@ -12,8 +12,8 @@ URL = "/api/products/"
 
 route(URL * "list", method = GET) do
     try
-        json(service.all_product())
         setstatus(OK)
+        json(service.all_product())
     catch error
         response = handling_error(error)
         setstatus(response.status)

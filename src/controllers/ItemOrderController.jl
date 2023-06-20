@@ -2,7 +2,7 @@ module ItemOrderController
 
 using Genie.Router, Genie.Requests, Genie.Renderer.Json, Genie.Responses
 import Mercado.HandlingExceptions: handling_error
-import Mercado.ItemOrderService: service
+import Mercado.ItemOrderService as service
 import Genie.Responses: setstatus
 using Mercado.ItemOrderModel
 import ToStruct: tostruct
