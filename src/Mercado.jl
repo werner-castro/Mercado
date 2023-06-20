@@ -27,13 +27,11 @@ include("repositories/ItemOrderRepository.jl")
 include("repositories/ClientRepository.jl")
 include("repositories/UserRepository.jl")
 
-
 ########################################## service layer
-include("services/ProductService.jl")
-include("services/OrderService.jl")
-include("services/ItemOrderService.jl")
-include("services/ClientService.jl")
-include("services/UserService.jl")
+# adicionando os serviços
+for file in readdir("src/services")
+  include("services/$file")
+end
 
 using Genie
 
