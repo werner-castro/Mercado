@@ -28,7 +28,6 @@ include("repositories/ClientRepository.jl")
 include("repositories/UserRepository.jl")
 
 ########################################## service layer
-# adicionando os serviços
 for file in readdir("src/services")
   include("services/$file")
 end
