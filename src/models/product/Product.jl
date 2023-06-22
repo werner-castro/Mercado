@@ -1,10 +1,11 @@
 module ProductModel
 
 using SearchLight, SearchLight.Validation
+using SearchLight.Requests
 using Mercado.Validations
 import Base: @kwdef
 
-export Product, modelverify
+export Product, getmodel
 
 @kwdef mutable struct Product <: AbstractModel
     id::DbId            = DbId()

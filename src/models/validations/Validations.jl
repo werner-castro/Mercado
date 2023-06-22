@@ -1,8 +1,10 @@
 module Validations
 
 using SearchLight, SearchLight.Validation, Dates
+using ToStruct: tostruct
+using Genie.Requests
 
-export modelverify, not_empty, not_zero, max_size_name, is_valid_email, is_valid_date, is_int, is_string, is_unique
+export modelverify, getmodel, not_empty, not_zero, max_size_name, is_valid_email, is_valid_date, is_int, is_string, is_unique
 
 function modelverify(model::AbstractModel)
     result = validate(model)
@@ -15,10 +17,18 @@ function modelverify(model::AbstractModel)
                 messages *= "$message_error \n"
             end
         end
-        throw(ValidationError(:product, :error, messages))
+        
+        throw(ValidationError(:model, :error, messages))
     end
 
     return model
+end
+
+function getmodel(entity::DataType)
+    model = tostruct(entity, jsonpayload())
+    result = modelverify(model)
+
+    return result
 end
 
 function not_empty(field::Symbol, m::T)::ValidationResult where {T<:AbstractModel}

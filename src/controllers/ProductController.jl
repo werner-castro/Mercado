@@ -1,71 +1,63 @@
 module ProductController
 
 import Mercado.HandlingExceptions: handling_error
+using Mercado.ProductModel: Product, getmodel
 using Genie.Requests, Genie.Renderer.Json
 import Mercado.ProductService as service
 import Genie.Responses: setstatus
-using Mercado.ProductModel
-import ToStruct: tostruct
 using Genie.Router
 
 URL = "/api/products/"
 
 route(URL * "list", method = GET) do
     try
-        setstatus(OK)
-        json(service.all_product())
+        return json(service.all_product())
     catch error
         response = handling_error(error)
-        setstatus(response.status)
         return response
     end
 end
 
 route(URL * "select/id", method = GET) do 
     try 
-        id = tryparse(Int64, params(:id))
+        id = tryparse(Int64, payload(:id))
         product = service.get_product_by_id(id)
-        setstatus(OK)
-        json(product)
+        return json(product)
     catch error
         response = handling_error(error)
-        setstatus(response.status)
         return response
     end
 end
 
 route(URL * "save", method = POST) do 
     try
-        product = tostruct(Product, jsonpayload()) |> modelverify
-        service.save_product(product)
+        product = getmodel(Product)
         setstatus(CREATED)
+        return service.save_product(product)
     catch error
         response = handling_error(error)
-        setstatus(response.status)
         return response
     end
 end
 
 route(URL * "update", method = PUT) do
     try
-        product = tostruct(Product, jsonpayload()) |> modelverify
-        json(service.update_product_by_id(product))
+        product = getmodel(Product)
         setstatus(NO_CONTENT)
+        return json(service.update_product_by_id(product))
     catch error
         response = handling_error(error)
-        setstatus(response.status)
         return response
     end
 end
 
 route(URL * "delete/:id", method = DELETE) do
     try
-        id = tryparse(Int64, payload(:id))
-        service.delete_product(id)
+        id = tryparse(Int64, params(:id))
         setstatus(NO_CONTENT)
+        return service.delete_product(id)
     catch error 
         response = handling_error(error)
-        setstatus(response.status)
         return response
     end
 end
