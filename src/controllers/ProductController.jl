@@ -20,7 +20,7 @@ end
 
 route(URL * "select/id", method = GET) do 
     try 
-        id = tryparse(Int64, payload(:id))
+        id = tryparse(Int64, params(:id))
         product = service.get_product_by_id(id)
         return json(product)
     catch error
@@ -53,7 +53,7 @@ end
 
 route(URL * "delete/:id", method = DELETE) do
     try
-        id = tryparse(Int64, params(:id))
+        id = tryparse(Int64, payload(:id))
         setstatus(NO_CONTENT)
         return service.delete_product(id)
     catch error 
