@@ -1,7 +1,6 @@
 module ProductModel
 
 using SearchLight, SearchLight.Validation
-using SearchLight.Requests
 using Mercado.Validations
 import Base: @kwdef
 
