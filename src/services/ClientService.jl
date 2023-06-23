@@ -41,7 +41,7 @@ end
 function get_client_by_name(name::String)
     client = Client(name=name)
     result = repository.select_by_name(client)
-    !isnothing(result) || throw(NotFoundException("Name of client: $(client.id) not found", "", status.NOT_FOUND, ""))
+    length(result) > 0 || throw(NotFoundException("Name of client: $(name) not found", "", status.NOT_FOUND, ""))
 
     return result
 end
