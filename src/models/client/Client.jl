@@ -4,15 +4,13 @@ using SearchLight, SearchLight.Validation
 using Mercado.Validations
 import Base: @kwdef 
 
-export Client, modelverify 
+export Client, getmodel 
 
 @kwdef mutable struct Client <: AbstractModel
     id::DbId       = DbId()
     name::String   = ""
     email::String  = ""
 end
-
-Client(name::String) = Client(name = String(name))
 
 Validation.validator(::Type{Client}) = ModelValidator([
     ValidationRule(:name, not_empty) 
