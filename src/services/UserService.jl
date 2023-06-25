@@ -2,19 +2,20 @@ module UserService
 
 using Genie.Exceptions, SearchLight.Exceptions
 import Mercado.UserRepository as repository
+import Mercado.UserModel: User, gethash
 import HTTP.StatusCodes as status
-import Mercado.UserModel: User
 
 export all_users, save_user, update_user_by_id, delete_user, get_user_by_id, get_user_by_email
 
 function all_users()
     users = repository.all(User)
-    !isnothing(users) || throw(NotFoundException("table USERS is empty", "", status.NO_CONTENT, ""))
+    length(users) > 0 || throw(NotFoundException("table USERS is empty !", "", status.NO_CONTENT, ""))
 
     return users
 end
 
 function save_user(user::User)
+    user.password = gethash(user.password)
     result = repository.save(user)
     isequal(result, true) || throw(NotPersistedException(User, "user not persisted")) 
 
