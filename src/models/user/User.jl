@@ -8,10 +8,11 @@ using SHA
 export User, getmodel, gethash
 
 @kwdef mutable struct User <: AbstractModel
-    id::DbId       = DbId()
-    name::String   = ""
-    email::String  = ""
+    id::DbId         = DbId()
+    name::String     = ""
+    email::String    = ""
     password::String = ""
+    User(id, name, email, password) = new(id, name, email, gethash(password))
 end
 
 Validation.validator(::Type{User}) = ModelValidator([
@@ -22,8 +23,6 @@ Validation.validator(::Type{User}) = ModelValidator([
     ValidationRule(:password, not_empty)
 ])
 
-function gethash(password::String)
-    return bytes2hex(sha256(password))
-end
-    
+gethash(password::String) = return bytes2hex(sha256(password))
+
 end # module

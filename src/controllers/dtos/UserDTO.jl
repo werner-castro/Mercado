@@ -1,11 +1,11 @@
 module UserDTO
 
-using SearchLight: DbId
+using SearchLight: AbstractModel
 
 export UserDto
 
-struct UserDto
-    id::DbId
+struct UserDto <: AbstractModel
+    id::Int32
     name::String
     email::String
 end

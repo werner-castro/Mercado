@@ -1,11 +1,12 @@
 module MercadoRepository
 
-using SearchLight
-using FunSQL
+using SearchLight, SearchLight.QueryBuilder
+using DataFrames
 
 export all, find, findone, save, updateby_or_create, update_or_create, delete, alter_by_id, select_by_id, select_by_name
-export SQLWhereExpression, select_by_date, select_by_totals
-export As, From, Fun, Get, Join, Select, Where
+export SQLWhereExpression, SQLQuery, select_by_date, select_by_totals, select, from, query, dataframetostruct
+
+dataframetostruct(model::DataType, result_query::DataFrame) = [model(row...) for row in eachrow(result_query)]
 
 alter_by_id(model::AbstractModel) = update_or_create(model, ignore = [:id])
 
