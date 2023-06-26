@@ -17,22 +17,23 @@ function select_by_email(email::String)
 end
 
 function select_all_users()
+    
+    # consulta com FunSQL e o SearLight
     node = From(:users) |> Select(Get.id, Get.name, Get.email)
     q = render(catalog, node).raw
     result = query(q)
     users = tomodel(UserDto, result)
+    # users = to_models(UserDto, result) # esse método não funciona, pois utiliza uma função customizada do DataFrame
+    
+    # consulta somente com o SearchLight
+    # columns = [
+    #     SQLColumn("id"),
+    #     SQLColumn("name"),
+    #     SQLColumn("email")
+    # ]
+    # users = all(User, columns=columns)
 
     return users
-
-    # columns = [
-    #     SQLColumn("users.id"),
-    #     SQLColumn("users.name"),
-    #     SQLColumn("users.email")
-    # ]
-
-    # users  = all(User, columns=columns)
-
-    # return users
 end
 
 end # module
