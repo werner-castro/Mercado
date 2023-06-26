@@ -4,7 +4,6 @@ import FunSQL: From, Select, Get, SQLCatalog, SQLTable, render
 using Mercado.MercadoRepository
 using Mercado.UserDTO: UserDto
 using Mercado.UserModel: User
-using SearchLight: query
 
 export select_by_email, select_all_users
 
@@ -21,9 +20,19 @@ function select_all_users()
     node = From(:users) |> Select(Get.id, Get.name, Get.email)
     q = render(catalog, node).raw
     result = query(q)
-    users = dataframetostruct(UserDto, result)
+    users = tomodel(UserDto, result)
 
     return users
+
+    # columns = [
+    #     SQLColumn("users.id"),
+    #     SQLColumn("users.name"),
+    #     SQLColumn("users.email")
+    # ]
+
+    # users  = all(User, columns=columns)
+
+    # return users
 end
 
 end # module

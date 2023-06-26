@@ -1,12 +1,15 @@
 module MercadoRepository
 
-using SearchLight, SearchLight.QueryBuilder
+using SearchLight.QueryBuilder
+import SearchLight: query
+using SearchLight 
 using DataFrames
 
 export all, find, findone, save, updateby_or_create, update_or_create, delete, alter_by_id, select_by_id, select_by_name
-export SQLWhereExpression, SQLQuery, select_by_date, select_by_totals, select, from, query, dataframetostruct
+export SQLColumn, SQLQuery, SQLWhereExpression, SQLLimit, SQLOrder, SQLRaw, SQLCatalog, SQLTable
+export select_by_date, select_by_totals, select, from, query, tomodel
 
-dataframetostruct(model::DataType, result_query::DataFrame) = [model(row...) for row in eachrow(result_query)]
+tomodel(model::DataType, result_query::DataFrame) = [model(row...) for row in eachrow(result_query)]
 
 alter_by_id(model::AbstractModel) = update_or_create(model, ignore = [:id])
 
