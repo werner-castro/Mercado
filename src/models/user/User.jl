@@ -5,14 +5,14 @@ using Mercado.Validations
 import Base: @kwdef
 using SHA
 
-export User, getmodel, gethash
+export User, getmodel
 
 @kwdef mutable struct User <: AbstractModel
     id::DbId         = DbId()
     name::String     = ""
     email::String    = ""
     password::String = ""
-    User(id, name, email, password) = new(id, name, email, gethash(password))
+    User(id, name, email, password) = new(id, name, email, bytes2hex(sha256(password)))
 end
 
 Validation.validator(::Type{User}) = ModelValidator([
@@ -22,7 +22,5 @@ Validation.validator(::Type{User}) = ModelValidator([
     ValidationRule(:email, is_unique)
     ValidationRule(:password, not_empty)
 ])
-
-gethash(password::String) = return bytes2hex(sha256(password))
 
 end # module

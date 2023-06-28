@@ -3,26 +3,22 @@ module OrderModel
 import SearchLight.Relationships: Relationship!
 using SearchLight, SearchLight.Validation
 import Mercado.ClientModel: Client
+using Dates: Date, format, now
 using Mercado.Validations
 import Base: @kwdef 
-import Dates: Date
 
-export Order, modelverify
+export Order, getmodel
 
 @kwdef mutable struct Order <: AbstractModel
     id::DbId                        = DbId()
     client_id::Int64                = 0
-    order_date::Union{String, Date} = ""
+    order_date::Union{String, Date} = Date(1900, 01, 01)
     totals::Float64                 = 0.0
-    name::String                    = ""
+    Order(id, client_id, order_date, totals) = new(id, client_id, String(order_date), totals)
 end
 
-Order(name::String) = Order(name = String(name))
-
 Validation.validator(::Type{Order}) = ModelValidator([
-    ValidationRule(:client, not_empty)
-    ValidationRule(:order_date, not_empty)
-    ValidationRule(:order_date, is_valid_date)
+    ValidationRule(:client_id, not_empty)
 ])
 
 end # module

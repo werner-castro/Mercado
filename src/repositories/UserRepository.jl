@@ -1,13 +1,13 @@
 module UserRepository
 
-import FunSQL: From, Select, Get, SQLCatalog, SQLTable, render
+import FunSQL: From, Select, Get, render
 using Mercado.MercadoRepository
 using Mercado.UserDTO: UserDto
 using Mercado.UserModel: User
 
 export select_by_email, select_all_users
 
-catalog = SQLCatalog(SQLTable(:users, columns = [:id, :name, :email, :password]), dialect = :postgresql)
+catalog = createcatalog(:users, User)
 
 function select_by_email(email::String)
     user = User(email=email)
@@ -18,8 +18,7 @@ end
 
 function select_all_users()
     node = From(:users) |> Select(Get.id, Get.name, Get.email)
-    q = render(catalog, node).raw
-    result = query(q)
+    result = render(catalog, node).raw |> query
     users = tomodel(UserDto, result)
 
     return users

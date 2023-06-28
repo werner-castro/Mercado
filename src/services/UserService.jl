@@ -2,9 +2,9 @@ module UserService
 
 using Genie.Exceptions, SearchLight.Exceptions
 import Mercado.UserRepository as repository
-import Mercado.UserModel: User, gethash
 import HTTP.StatusCodes as status
 import Mercado.UserDTO: UserDto
+import Mercado.UserModel: User
 
 export all_users, save_user, update_user_by_id, delete_user, get_user_by_id, get_user_by_email
 
